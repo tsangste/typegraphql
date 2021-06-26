@@ -1,12 +1,14 @@
 import { Resolver, Mutation, Arg, Query } from 'type-graphql'
+import { Db, ObjectID } from 'mongodb'
+import { Inject } from 'typedi'
+
 import { Category } from './category.type'
 import { CategoryInput } from './category.input'
-import { Db, ObjectID } from 'mongodb'
 
 @Resolver()
 export class CategoryResolver {
 
-  constructor(private db: Db) {}
+  constructor(@Inject('db') private db: Db) {}
 
   @Query(_returns => Category, { nullable: false })
   async returnSingleCategory(@Arg('id') id: string) {

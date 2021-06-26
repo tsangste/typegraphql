@@ -1,5 +1,5 @@
 import express from 'express'
-import { MongoClient as mongodb, Db } from 'mongodb'
+import { MongoClient as mongodb } from 'mongodb'
 import 'reflect-metadata'
 import { ApolloServer } from 'apollo-server-express'
 import { Container } from 'typedi'
@@ -10,7 +10,7 @@ import { CategoryResolver } from './category/category.resolver'
 mongodb.connect('mongodb://mongo:27017', { useNewUrlParser: true })
   .then(client => {
     const db = client.db('typegraphql')
-    Container.set(Db, db)
+    Container.set('db', db)
 
     return buildSchema({
       resolvers: [CategoryResolver],
