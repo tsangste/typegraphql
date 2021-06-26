@@ -1,10 +1,11 @@
 import { Resolver, Mutation, Arg, Query } from 'type-graphql'
 import { Db, ObjectID } from 'mongodb'
-import { Inject } from 'typedi'
+import { Inject, Service } from 'typedi'
 
 import { Category } from './category.type'
 import { CategoryInput } from './category.input'
 
+@Service()
 @Resolver()
 export class CategoryResolver {
 
