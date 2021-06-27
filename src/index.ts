@@ -26,6 +26,6 @@ mongodb.connect('mongodb://mongo:27017', { useNewUrlParser: true })
     server.applyMiddleware({ app })
 
     const port = 4069
-  app.listen(port, () => console.log('Deployment running on port: ', port))
-  app.addListener('error', console.error)
-})
+    app.listen(port, () => console.log('Deployment running on port: ', port))
+    app.addListener('error', console.error)
+  })
