@@ -7,7 +7,7 @@ import { buildSchema } from 'type-graphql'
 import { CategoryResolver } from './category/category.resolver'
 
 Promise.all([
-  mongodb.connect('mongodb://localhost:27017', { useNewUrlParser: true }),
+  mongodb.connect('mongodb://mongo:27017', { useNewUrlParser: true }),
   buildSchema({
     resolvers: [CategoryResolver],
     emitSchemaFile: true,

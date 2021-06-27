@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  typegraphql:
+    build: .
+    restart: always
+    volumes:
+      - .:/usr/app
+      - node_modules:/usr/app/node_modules
+    ports:
+      - 9123:9229
+      - 4069:4069
+
+  mongo:
+    image: library/mongo:4.0.24
+    restart: always
+    volumes:
+      - mongo_store:/data/db
+
+volumes:
+  node_modules:
+  mongo_store:
