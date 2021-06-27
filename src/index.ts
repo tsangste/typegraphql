@@ -1,7 +1,7 @@
 import express from 'express'
 import { MongoClient as mongodb } from 'mongodb'
 import 'reflect-metadata'
-import { ApolloServer } from 'apollo-server-express'
+import { graphqlHTTP } from 'express-graphql'
 import { Container } from 'typedi'
 import { buildSchema } from 'type-graphql'
 
@@ -20,10 +20,12 @@ mongodb.connect('mongodb://mongo:27017', { useNewUrlParser: true })
     })
   })
   .then((schema) => {
-    const server = new ApolloServer({ schema })
-
     const app = express()
-    server.applyMiddleware({ app })
+
+    app.use('/graphql', graphqlHTTP({
+      schema: schema,
+      graphiql: true
+    }))
 
     const port = 4069
     app.listen(port, () => console.log('Deployment running on port: ', port))
